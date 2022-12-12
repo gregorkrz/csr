@@ -452,7 +452,7 @@ class CSR(nn.Module):
         if (not self.support_only) and (not self.use_ground_truth) and p_score.shape[0] == n_score.shape[0]:
             if self.debug:
                 print("use margin loss")
-            return nn.MarginRankingLoss(self.margin)(p_score, n_score, y)
+            return nn.MarginRankingLoss(self.margin)(p_score, n_score, y.repeat(p_score.shape))
         if self.debug:
             print("use only positive loss")
         
